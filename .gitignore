@@ -9,6 +9,8 @@ firebase-debug.log
 
 .idea
 
+src/common/firebase.js
+
 # testing
 /coverage
 
