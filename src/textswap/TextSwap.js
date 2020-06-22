@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import {firestore} from '../common/firebase';
 import TextSend from "./TextSend";
+import TextReceive from "./TextReceive";
 
 class TextSwap extends Component {
 
     constructor(props) {
         super(props);
         this.sendText = this.sendText.bind(this);
+        this.retrieveText = this.retrieveText.bind(this);
     }
 
     sendText(code, text) {
@@ -17,10 +19,31 @@ class TextSwap extends Component {
             }).then(res => console.log(res));
     }
 
+    retrieveText(code) {
+        return new Promise(((resolve, reject) => {
+
+            let query = firestore.collection('textSwap').where('code', "==", code);
+
+            query.get()
+                .then(res =>{
+                    if (res.docs[0]) {
+                        resolve(res.docs[0].data());
+                    } else {
+                        reject('Text not Found')
+                    }
+                })
+                .catch(err =>{
+                    reject(err);
+                })
+        }))
+
+    }
+
     render() {
         return(
         <div>
             <TextSend sendText={this.sendText} />
+            <TextReceive retrieveText={this.retrieveText}/>
         </div>
         )
     }
