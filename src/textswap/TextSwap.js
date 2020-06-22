@@ -27,7 +27,13 @@ class TextSwap extends Component {
             query.get()
                 .then(res =>{
                     if (res.docs[0]) {
-                        resolve(res.docs[0].data());
+                        let ans = res.docs[0].data();
+                        let docId = res.docs[0].id;
+                        console.log(docId)
+                        firestore.collection('textSwap')
+                            .doc(docId).delete()
+                            .catch((err) => console.log(err))
+                        resolve(ans);
                     } else {
                         reject('Text not Found')
                     }
