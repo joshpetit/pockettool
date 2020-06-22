@@ -43,7 +43,7 @@ class TextReceive extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <input onChange={this.handleChange} name='code' placeholder='Code To Retrieve' />
-                    <button type='submit'>Get</button>
+                    <button type='submit'>Get</button><br />
                     <textarea id='responseArea'  placeholder='response' disabled contentEditable={false} />
                 </form>
             </div>

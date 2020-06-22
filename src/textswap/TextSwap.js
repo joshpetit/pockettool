@@ -12,11 +12,31 @@ class TextSwap extends Component {
     }
 
     sendText(code, text) {
-        firestore.collection('textSwap')
-            .add({
-                code: code,
-                text: text
-            }).then(res => console.log(res));
+        return new Promise( ((resolve, reject) => {
+            firestore.collection('aggregation')
+                .doc('values').get()
+                .then(res =>{
+
+                    let values = res.data().values;
+                    if (values.includes(code)){
+                        reject('Code is in use')
+                    } else {
+                        firestore.collection('textSwap')
+                            .add({
+                                code: code,
+                                text: text
+                            }).then(res => resolve("Link Stored!"))
+                            .catch(err => console.log("Error storing Link: " + err))
+                    }
+
+                })
+                .catch(err =>{
+                    console.log(err)
+                })
+
+
+        }))
+
     }
 
     retrieveText(code) {
@@ -47,10 +67,11 @@ class TextSwap extends Component {
 
     render() {
         return(
-        <div>
-            <TextSend sendText={this.sendText} />
-            <TextReceive retrieveText={this.retrieveText}/>
-        </div>
+            <div>
+                <TextSend sendText={this.sendText} />
+                <br />
+                <TextReceive retrieveText={this.retrieveText}/>
+            </div>
         )
     }
 }

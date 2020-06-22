@@ -20,7 +20,13 @@ class TextSend extends Component {
         if (code.trim() === '' || text.trim() === '') {
             console.log('no empty values')
         } else {
-            this.props.sendText(code, text);
+            this.props.sendText(code, text)
+                .then( res =>{
+                    alert(res);
+                })
+                .catch( err =>{
+                    alert(err);
+                })
         }
     }
 
