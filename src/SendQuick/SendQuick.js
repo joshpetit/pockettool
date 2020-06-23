@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {firestore} from '../common/firebase';
 import TextSend from "./TextSend";
 import TextReceive from "./TextReceive";
@@ -12,25 +12,22 @@ class SendQuick extends Component {
     }
 
     sendText(code, text) {
-        return new Promise( ((resolve, reject) => {
-            firestore.collection('aggregation')
-                .doc('values').get()
-                .then(res =>{
-
-                    let values = res.data().values;
-                    if (values.includes(code)){
+        return new Promise(((resolve, reject) => {
+            let query = firestore.collection('textSwap')
+                .where('code', "==", code).limit(1);
+            query.get().then(res => {
+                    if (res.docs.length > 0) {
                         reject('Code is in use')
                     } else {
                         firestore.collection('textSwap')
                             .add({
                                 code: code,
                                 text: text
-                            }).then(res => resolve("Text Stored! Will be deleted on first retrieval"))
+                            }).then( () => resolve("Text Stored! Will be deleted on first retrieval"))
                             .catch(err => console.log("Error storing Link: " + err))
                     }
-
                 })
-                .catch(err =>{
+                .catch(err => {
                     console.log(err)
                 })
 
@@ -45,7 +42,7 @@ class SendQuick extends Component {
             let query = firestore.collection('textSwap').where('code', "==", code);
 
             query.get()
-                .then(res =>{
+                .then(res => {
                     if (res.docs[0]) {
                         let ans = res.docs[0].data();
                         let docId = res.docs[0].id;
@@ -57,7 +54,7 @@ class SendQuick extends Component {
                         reject('Text not Found')
                     }
                 })
-                .catch(err =>{
+                .catch(err => {
                     reject(err);
                 })
         }))
@@ -69,10 +66,10 @@ class SendQuick extends Component {
     }
 
     render() {
-        return(
+        return (
             <div>
-                <TextSend sendText={this.sendText} />
-                <br />
+                <TextSend sendText={this.sendText}/>
+                <br/>
                 <TextReceive retrieveText={this.retrieveText}/>
             </div>
         )

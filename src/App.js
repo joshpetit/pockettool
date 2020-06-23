@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import TextSwap from "./textswap/TextSwap";
+import SendQuick from "./SendQuick/SendQuick";
 import { auth } from "./common/firebase"
 
 
@@ -8,7 +8,6 @@ class App extends Component {
 
     componentDidMount() {
         auth.signInAnonymously().then(user=>{
-            
         }).catch(err => {
                 console.log(err)
             }
@@ -19,7 +18,7 @@ class App extends Component {
     render() {
         return(
             <div>
-                <TextSwap />
+                <SendQuick />
             </div>
         )
     }
