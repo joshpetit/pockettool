@@ -15,9 +15,9 @@ class TextSend extends Component {
 
     handleSubmitRequest(event) {
         event.preventDefault();
-        let code = this.state.code.toString();
-        let text = this.state.text.toString();
-        if (code.trim() === '' || text.trim() === '') {
+        let code = this.state.code.toString().trim();
+        let text = this.state.text.toString().trim();
+        if (code === '' || text === '') {
             console.log('no empty values')
         } else {
             this.props.sendText(code, text)

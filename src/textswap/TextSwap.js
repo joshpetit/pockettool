@@ -25,7 +25,7 @@ class TextSwap extends Component {
                             .add({
                                 code: code,
                                 text: text
-                            }).then(res => resolve("Link Stored!"))
+                            }).then(res => resolve("Text Stored! Will be deleted on first retrieval"))
                             .catch(err => console.log("Error storing Link: " + err))
                     }
 
@@ -49,7 +49,6 @@ class TextSwap extends Component {
                     if (res.docs[0]) {
                         let ans = res.docs[0].data();
                         let docId = res.docs[0].id;
-                        console.log(docId)
                         firestore.collection('textSwap')
                             .doc(docId).delete()
                             .catch((err) => console.log(err))

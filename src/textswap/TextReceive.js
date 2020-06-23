@@ -15,7 +15,7 @@ class TextReceive extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.code.trim() !== '') {
-            this.props.retrieveText(this.state.code)
+            this.props.retrieveText(this.state.code.trim())
                 .then(res => {
                     let responseArea = document.getElementById('responseArea');
                     responseArea.value = res.text;
