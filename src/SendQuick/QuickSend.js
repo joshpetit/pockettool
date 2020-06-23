@@ -3,7 +3,7 @@ import {firestore} from '../common/firebase';
 import TextSend from "./TextSend";
 import TextReceive from "./TextReceive";
 
-class SendQuick extends Component {
+class QuickSend extends Component {
 
     constructor(props) {
         super(props);
@@ -62,7 +62,7 @@ class SendQuick extends Component {
     }
 
     componentDidMount() {
-        document.title = "SendQuick"
+        document.title = "QuickSend"
     }
 
     render() {
@@ -76,4 +76,4 @@ class SendQuick extends Component {
     }
 }
 
-export default SendQuick;
+export default QuickSend;

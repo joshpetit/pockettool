@@ -7,6 +7,8 @@
 
 firebase-debug.log
 
+public/template.html
+
 .idea
 
 src/common/firebase.js

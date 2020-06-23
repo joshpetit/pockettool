@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SendQuick from "./SendQuick/SendQuick";
+import QuickSend from "./SendQuick/QuickSend";
 import { auth } from "./common/firebase"
 
 
@@ -18,7 +18,7 @@ class App extends Component {
     render() {
         return(
             <div>
-                <SendQuick />
+                <QuickSend />
             </div>
         )
     }
