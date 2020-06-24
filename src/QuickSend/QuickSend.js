@@ -4,6 +4,9 @@ import TextSend from "./TextSend";
 import TextReceive from "./TextReceive";
 import './QuickSend.css'
 import Footer from "./Footer";
+import logo from '../common/quicksend.svg'
+
+
 class QuickSend extends Component {
 
     constructor(props) {
@@ -75,11 +78,14 @@ class QuickSend extends Component {
             <div className="container">
                 <h4 className="brand-logo centered center ">QuickSend</h4>
                 <div className='center-align '>
-                <p className="center ">Codes and values expire after retrieval</p>
-                <button className='btn-small white hide-on-med-and-up'><a href='#textReceive' >Jump to Restore</a></button>
+                    <p className="center ">Send Text and Links between devices. Codes and values expire after retrieval</p>
+                    <button className='btn-small white hide-on-med-and-up'><a href='#textReceive' >Jump to Restore</a></button>
                 </div>
                 <div className="row">
                     <TextSend sendText={this.sendText}/>
+                    <div className='center'>
+                        <img className='hide-on-med-and-up center ' alt="Quick Send Logo centered center" src={logo} width={90} />
+                    </div>
                     <TextReceive retrieveText={this.retrieveText}/>
                 </div>
                 <Footer />

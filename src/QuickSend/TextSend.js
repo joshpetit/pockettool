@@ -45,9 +45,9 @@ class TextSend extends Component {
                 <form name='textSend' onSubmit={this.handleSubmitRequestX}>
                     <label htmlFor="code">code:</label>
                     <input type='text' onChange={this.handleChange} name='code' placeholder='Code' />
-                    <label htmlFor="text">text or link:</label>
+                    <label htmlFor="text">link to send:</label>
 
-                    <textarea type='text' onChange={this.handleChange} name='text' placeholder='Link/text' ></textarea>
+                    <textarea type='text' onChange={this.handleChange} name='text' placeholder='Link/text' />
                     <div className="center-align">
                         <button onClick={this.handleSubmitRequest} type="submit" className="btn-large center-align">Send</button>
                     </div>

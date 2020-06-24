@@ -55,15 +55,15 @@ class TextReceive extends Component {
     render() {
 
         return (
-            <div id="textReceive"  className="col s12 m5 l5 offset-l2 offset-m2 z-depth-1 scrollSpy">
+            <div   className="col s12 m5 l5 offset-l2 offset-m2 z-depth-1 ">
                 <h6 className="center">Restore a Link</h6>
 
-                <form  onSubmit={this.handleSubmit}>
-                    <label htmlFor="retrievalCode">code:</label>
+                <form   onSubmit={this.handleSubmit}>
+                    <label id="textReceive" className='scrollSpy' htmlFor="retrievalCode">code:</label>
                     <input type="text" onChange={this.handleChange} name='code' placeholder='code' />
 
-                    <label htmlFor="responseArea">text or link:</label>
-                    <textarea id='responseArea'  placeholder='response' readOnly></textarea>
+                    <label htmlFor="responseArea">retrieved link:</label>
+                    <textarea id='responseArea'  placeholder='response' readOnly />
                     <div className='center-align'>
                         <button onClick={this.handleSubmit} type="submit" className="btn-large">Restore</button>
                         <button onClick={this.copyItem} className="btn-floating" ><i className="material-icons">content_copy</i></button>

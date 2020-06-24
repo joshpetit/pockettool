@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import QuickSend from "./SendQuick/QuickSend";
+import QuickSend from "./QuickSend/QuickSend";
 import { auth } from "./common/firebase"
 import Navigation from "./navigation/Navigation";
 
