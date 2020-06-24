@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {firestore} from '../common/firebase';
 import TextSend from "./TextSend";
 import TextReceive from "./TextReceive";
-
+import './QuickSend.css'
+import Footer from "./Footer";
 class QuickSend extends Component {
 
     constructor(props) {
@@ -16,18 +17,22 @@ class QuickSend extends Component {
             let query = firestore.collection('textSwap')
                 .where('code', "==", code).limit(1);
             query.get().then(res => {
-                    if (res.docs.length > 0) {
-                        reject('Code is in use')
-                    } else {
-                        firestore.collection('textSwap')
-                            .add({
-                                code: code,
-                                text: text
-                            }).then( () => resolve("Text Stored! Will be deleted on first retrieval"))
-                            .catch(err => console.log("Error storing Link: " + err))
-                    }
-                })
+                if (res.docs.length > 0) {
+                    reject('Please use another Code')
+                } else {
+                    firestore.collection('textSwap')
+                        .add({
+                            code: code,
+                            text: text
+                        }).then( () => resolve("Text Stored! Will be deleted on first retrieval"))
+                        .catch(err => {
+                            alert("Error storing Link, see console for details ")
+                            console.log(err);
+                        })
+                }
+            })
                 .catch(err => {
+                    alert("Error Querying Database, see console for details");
                     console.log(err)
                 })
 
@@ -67,10 +72,17 @@ class QuickSend extends Component {
 
     render() {
         return (
-            <div>
-                <TextSend sendText={this.sendText}/>
-                <br/>
-                <TextReceive retrieveText={this.retrieveText}/>
+            <div className="container">
+                <h4 className="brand-logo centered center ">QuickSend</h4>
+                <div className='center-align '>
+                <p className="center ">Codes and values expire after retrieval</p>
+                <button className='btn-small white hide-on-med-and-up'><a href='#textReceive' >Jump to Restore</a></button>
+                </div>
+                <div className="row">
+                    <TextSend sendText={this.sendText}/>
+                    <TextReceive retrieveText={this.retrieveText}/>
+                </div>
+                <Footer />
             </div>
         )
     }

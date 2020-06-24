@@ -1,0 +1,25 @@
+.row > div{
+    margin-bottom: 70px;
+}
+
+textarea {
+    resize: none;
+}
+
+.parallax-container {
+    height: 20vw;
+}
+
+.btn-large {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+
+.brand-logo {
+    font-style: italic;
+}
+
+.fa {
+    font-size: 30px;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import QuickSend from "./SendQuick/QuickSend";
 import { auth } from "./common/firebase"
+import Navigation from "./navigation/Navigation";
 
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
     render() {
         return(
             <div>
+                <Navigation />
                 <QuickSend />
             </div>
         )

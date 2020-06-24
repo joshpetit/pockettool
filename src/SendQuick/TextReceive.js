@@ -10,6 +10,7 @@ class TextReceive extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.copyItem = this.copyItem.bind(this)
     }
 
     handleSubmit(event) {
@@ -20,10 +21,10 @@ class TextReceive extends Component {
                     let responseArea = document.getElementById('responseArea');
                     responseArea.value = res.text;
                 }).catch(err => {
-                console.log(err);
+                alert(err);
             })
         } else {
-            console.log("Code can't be empty!")
+            alert("Code can't be empty!")
         }
     }
 
@@ -37,14 +38,36 @@ class TextReceive extends Component {
         })
     }
 
+    copyItem(event) {
+        event.preventDefault();
+        let text = document.getElementById("responseArea");
+
+        if (text !== null) {
+            text.select();
+            text.setSelectionRange(0, 99999);
+
+            document.execCommand("copy");
+
+            alert("Copied Link!");
+        }
+    }
+
     render() {
 
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleChange} name='code' placeholder='Code To Retrieve' />
-                    <button type='submit'>Get</button><br />
-                    <textarea id='responseArea'  placeholder='response' disabled contentEditable={false} />
+            <div id="textReceive"  className="col s12 m5 l5 offset-l2 offset-m2 z-depth-1 scrollSpy">
+                <h6 className="center">Restore a Link</h6>
+
+                <form  onSubmit={this.handleSubmit}>
+                    <label htmlFor="retrievalCode">code:</label>
+                    <input type="text" onChange={this.handleChange} name='code' placeholder='code' />
+
+                    <label htmlFor="responseArea">text or link:</label>
+                    <textarea id='responseArea'  placeholder='response' readOnly></textarea>
+                    <div className='center-align'>
+                        <button onClick={this.handleSubmit} type="submit" className="btn-large">Restore</button>
+                        <button onClick={this.copyItem} className="btn-floating" ><i className="material-icons">content_copy</i></button>
+                    </div>
                 </form>
             </div>
         )

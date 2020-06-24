@@ -18,7 +18,7 @@ class TextSend extends Component {
         let code = this.state.code.toString().trim();
         let text = this.state.text.toString().trim();
         if (code === '' || text === '') {
-            console.log('no empty values')
+            alert('No empty values')
         } else {
             this.props.sendText(code, text)
                 .then( res =>{
@@ -40,11 +40,17 @@ class TextSend extends Component {
 
     render() {
         return (
-            <div>
-                <form name='textSend' onSubmit={this.handleSubmitRequest}>
+            <div className="col s12 m5 l5  z-depth-1">
+                <h6 className="center">Save a Link</h6>
+                <form name='textSend' onSubmit={this.handleSubmitRequestX}>
+                    <label htmlFor="code">code:</label>
                     <input type='text' onChange={this.handleChange} name='code' placeholder='Code' />
-                    <input type='text' onChange={this.handleChange} name='text' placeholder='Link/text' />
-                    <button type='submit'>Send</button>
+                    <label htmlFor="text">text or link:</label>
+
+                    <textarea type='text' onChange={this.handleChange} name='text' placeholder='Link/text' ></textarea>
+                    <div className="center-align">
+                        <button onClick={this.handleSubmitRequest} type="submit" className="btn-large center-align">Send</button>
+                    </div>
                 </form>
             </div>
         )

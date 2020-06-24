@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "pockettool-84616"
+  },
+  "targets": {
+    "pockettool-84616": {
+      "hosting": {
+        "QuickSend": [
+          "quicksend"
+        ]
+      }
+    }
   }
 }
